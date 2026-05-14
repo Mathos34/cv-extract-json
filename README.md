@@ -21,7 +21,7 @@ LLM-based extraction is convenient but routinely hallucinates plausible-looking 
 1. **Synthetic dataset** (`src/generator.py`): 500 French CVs are generated from templates with the `faker` package. Because we control generation, we know every entity span for free, no manual labeling.
 2. **Token classification** (`src/data.py`, `train.py`): we BIO-tag tokens for 7 entity types (PERSON, SKILL, ORG, DATE, TITLE, DEGREE, SCHOOL) and fine-tune `cmarkea/distilcamembert-base` (67.5M params) for token classification.
 3. **Span aggregation** (`src/extract.py`): contiguous BIO tags are collapsed into character spans, then assembled into a structured CV.
-4. **Pydantic validation** (`src/schema.py`): the assembled object goes through `StructuredCV.model_validate(...)` — anything that does not match the schema is rejected.
+4. **Pydantic validation** (`src/schema.py`): the assembled object goes through `StructuredCV.model_validate(...)`. Anything that does not match the schema is rejected.
 5. **Verbatim guardrail** (`src/verbatim.py`): every string field is normalized (lowercased, diacritics stripped) and required to appear as a substring of the normalized source. The fraction of fields that pass becomes a per-CV confidence score.
 
 ## Architecture
