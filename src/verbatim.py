@@ -45,16 +45,20 @@ def verify(cv: StructuredCV, source: str) -> VerbatimReport:
     verified = 0
     missing: list[tuple[str, str]] = []
     t, v = _check(cv.person, source_norm, "person", missing)
-    total += t; verified += v
+    total += t
+    verified += v
     for i, sk in enumerate(cv.skills):
         t, v = _check(sk, source_norm, f"skills[{i}]", missing)
-        total += t; verified += v
+        total += t
+        verified += v
     for i, exp in enumerate(cv.experiences):
         for k in ("title", "org", "period"):
             t, v = _check(getattr(exp, k), source_norm, f"experiences[{i}].{k}", missing)
-            total += t; verified += v
+            total += t
+            verified += v
     for i, edu in enumerate(cv.educations):
         for k in ("degree", "school", "year"):
             t, v = _check(getattr(edu, k), source_norm, f"educations[{i}].{k}", missing)
-            total += t; verified += v
+            total += t
+            verified += v
     return VerbatimReport(total, verified, missing)

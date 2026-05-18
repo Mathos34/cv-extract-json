@@ -20,7 +20,7 @@ def encode_example(text: str, spans: list[Span], tokenizer, max_length: int = 25
     enc = tokenizer(text, truncation=True, max_length=max_length, return_offsets_mapping=True)
     offsets = enc["offset_mapping"]
     labels = []
-    for tok_idx, (s, e) in enumerate(offsets):
+    for _tok_idx, (s, e) in enumerate(offsets):
         if s == e:
             labels.append(-100)
             continue

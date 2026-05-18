@@ -107,7 +107,7 @@ def make_cv(seed: int) -> tuple[str, list[Span]]:
 
     _add(parts, spans, "\nCOMPETENCES\n", None)
     skills = rng.sample(SKILL_POOL, k=rng.randint(4, 7))
-    for i, s in enumerate(skills):
+    for _i, s in enumerate(skills):
         _add(parts, spans, "- ", None)
         _add(parts, spans, s, "SKILL")
         _add(parts, spans, "\n", None)

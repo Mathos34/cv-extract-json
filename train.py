@@ -43,7 +43,7 @@ def token_metrics(model, loader, device):
             logits = model(**{k: v for k, v in batch.items() if k != "labels"}).logits
             preds = logits.argmax(dim=-1)
             mask = batch["labels"] != -100
-            for p, t in zip(preds[mask].tolist(), batch["labels"][mask].tolist()):
+            for p, t in zip(preds[mask].tolist(), batch["labels"][mask].tolist(), strict=False):
                 pl = ID2LABEL[p]
                 tl = ID2LABEL[t]
                 pe = "O" if pl == "O" else pl.split("-", 1)[1]
