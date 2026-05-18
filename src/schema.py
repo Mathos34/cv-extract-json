@@ -26,5 +26,5 @@ class StructuredCV(BaseModel):
 # BIO label set: entity types we recognize at token level.
 ENTITY_TYPES = ["PERSON", "SKILL", "ORG", "DATE", "TITLE", "DEGREE", "SCHOOL"]
 LABELS = ["O"] + [f"{p}-{e}" for e in ENTITY_TYPES for p in ("B", "I")]
-LABEL2ID = {l: i for i, l in enumerate(LABELS)}
-ID2LABEL = {i: l for l, i in LABEL2ID.items()}
+LABEL2ID = {lbl: i for i, lbl in enumerate(LABELS)}
+ID2LABEL = {i: lbl for lbl, i in LABEL2ID.items()}

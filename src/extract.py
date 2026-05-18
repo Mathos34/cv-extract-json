@@ -17,7 +17,7 @@ def predict_spans(text: str, model, tokenizer, max_length: int = 256) -> list[tu
     cur_label: str | None = None
     cur_start = -1
     cur_end = -1
-    for tid, (s, e) in zip(pred_ids, offsets):
+    for tid, (s, e) in zip(pred_ids, offsets, strict=False):
         if s == e:
             continue
         label = ID2LABEL[tid]
