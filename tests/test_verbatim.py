@@ -1,5 +1,5 @@
 """Unit tests for the verbatim anti-hallucination guardrail."""
-from src.schema import StructuredCV, Experience, Education
+from src.schema import Education, Experience, StructuredCV
 from src.verbatim import normalize, verify
 
 
